@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vue</title>
+</head>
+<body>
+<div id="app">
+<h1>Vue 3</h1>
+<my-component :username="username"></my-component>
+</div>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="../httpVueLoader.js"></script>
+<script>
+window.Vue = Vue;
+const {createApp,defineAsyncComponent}=Vue;
+const app=createApp({
+	data(){
+		return {username:'Ed'}
+	},
+	components:{
+		'my-component':'url:./MyComponent.vue'
+	},
+	mounted(){
+		console.log('App mounted!');
+	}
+});
+httpVueLoader.install(app);
+app.mount('#app');
+</script>
+</body>
+</html>
